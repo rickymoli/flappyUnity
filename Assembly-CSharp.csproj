@@ -45,12 +45,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Camara.cs" />
      <Compile Include="Assets\Scripts\ContactoDetectaPaso.cs" />
      <Compile Include="Assets\Scripts\ContactoPersonaje.cs" />
      <Compile Include="Assets\Scripts\ControladorPersonaje.cs" />
      <Compile Include="Assets\Scripts\Generador.cs" />
      <Compile Include="Assets\Scripts\LimiteBloques.cs" />
      <Compile Include="Assets\Scripts\Movimiento.cs" />
+     <Compile Include="Assets\Scripts\Resolucion.cs" />
+     <Compile Include="Assets\Scripts\Scroll.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/opt/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
