@@ -3,13 +3,13 @@ using System.Collections;
 
 public class Camara : MonoBehaviour {
 
-
+	public float TARGET_WIDTH = 1280f;
+	public float TARGET_HEIGHT = 800f;
+	public float PIXELS_TO_UNITS = 50f;
 
 	// Use this for initialization
 	void Start () {
-		float TARGET_WIDTH = 1280f;
-		float TARGET_HEIGHT = 800f;
-		int PIXELS_TO_UNITS = 50;
+		
 		float desiredRatio = TARGET_WIDTH / TARGET_HEIGHT;
 		float currentRatio = (float)Screen.width / (float)Screen.height;
 
@@ -21,6 +21,17 @@ public class Camara : MonoBehaviour {
 		}
 	
 	}
+
+	public float getLimiteVerticalPantalla()
+	{
+		return Screen.height / PIXELS_TO_UNITS / 2f;
+	}
+
+	public float getLimiteHorizontalPantalla()
+	{
+		return Screen.width / PIXELS_TO_UNITS / 2f;
+	}
+
 	
 
 }
