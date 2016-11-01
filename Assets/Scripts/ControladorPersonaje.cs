@@ -13,6 +13,7 @@ public class ControladorPersonaje : MonoBehaviour {
 	private float limiteVerticalPantalla;
 	private Generador generador;
 	private Camara camara;
+	private bool impulsar = false;
 
 	void Awake()
 	{
@@ -26,7 +27,7 @@ public class ControladorPersonaje : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Input.GetMouseButton (0) && rb.velocity.y != 0) {
+		if (impulsar && rb.velocity.y != 0) {
 			float ahora = Time.fixedTime;
 			if (ahora > ultima + minimoTiempo) {
 				ultima = Time.fixedTime;
@@ -39,14 +40,23 @@ public class ControladorPersonaje : MonoBehaviour {
 		if (rb.position.y > limiteVerticalPantalla) {
 			Debug.Log("y: "+rb.position.y+" limite: "+limiteVerticalPantalla);
 			rb.velocity = new Vector2 (0, -fuerzaElevar/2);
+		}else if (rb.position.y < -limiteVerticalPantalla) {
+			generador.GameOver ();
 		}
 
 		rb.position = new Vector2 (0f,Mathf.Clamp(rb.position.y,-limiteVerticalPantalla,limiteVerticalPantalla));
 		rb.rotation = Mathf.Clamp ((rb.velocity.y) + rb.rotation, minimaRotacion, maximaRotacion);
 
 		//limite inferior
-		if (rb.position.y < -limiteVerticalPantalla) {
-			generador.GameOver ();
-		}
+
 	}
+
+	public void Impulsar() {
+		impulsar = true;
+	}
+
+	public void DetenerImpulsar() {
+		impulsar = false;
+	}
+
 }

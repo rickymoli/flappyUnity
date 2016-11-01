@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\ContactoDetectaPaso.cs" />
      <Compile Include="Assets\Scripts\ContactoPersonaje.cs" />
      <Compile Include="Assets\Scripts\ControladorPersonaje.cs" />
+     <Compile Include="Assets\Scripts\ControladorUI.cs" />
      <Compile Include="Assets\Scripts\Generador.cs" />
      <Compile Include="Assets\Scripts\LimiteBloques.cs" />
      <Compile Include="Assets\Scripts\Movimiento.cs" />

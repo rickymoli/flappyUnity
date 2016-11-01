@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 
 public class Generador : MonoBehaviour {
 
@@ -9,22 +9,20 @@ public class Generador : MonoBehaviour {
 	public float tiempoEsperarBloques = 3f;
 	public float tiempoEmpezar = 1f;
 	public GameObject personaje;
-	public GameObject gameObjectEmpezar;
-	public GameObject gameObjectGameOver;
-	public GameObject gameObjectPuntuacion;
-	public Text puntuacionTexto;
 
 	private Rigidbody2D rbPersonaje;
 	private bool gameOver;
 	private bool inicio;
 	private int puntuacion = 0;
 	private Camara camara;
+	private ControladorUI controladorUI;
 	private float limiteVerticalPantalla;
 	private float limiteHorizontalPantalla;
 
 	void Awake()
 	{
 		camara = GameObject.FindWithTag ("MainCamera").GetComponent<Camara> ();
+		controladorUI = GameObject.FindWithTag ("UI").GetComponent<ControladorUI> ();
 		rbPersonaje = personaje.GetComponent<Rigidbody2D> ();
 	}
 
@@ -33,8 +31,7 @@ public class Generador : MonoBehaviour {
 		limiteHorizontalPantalla = camara.getLimiteHorizontalPantalla ();
 		gameOver = false;
 		inicio = true;
-		gameObjectGameOver.SetActive (false);
-		gameObjectPuntuacion.SetActive (false);
+
 		rbPersonaje.isKinematic = true;
 		Debug.Log ("limiteVerticalPantalla: "+limiteVerticalPantalla);
 		transform.position = new Vector3 (limiteHorizontalPantalla/2+5, 0f, 0f);
@@ -43,9 +40,8 @@ public class Generador : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButtonDown (0) && inicio == true) {
-			gameObjectPuntuacion.SetActive (true);
 			inicio = false;
-			gameObjectEmpezar.SetActive (false);
+			controladorUI.PrintIniciado ();
 			rbPersonaje.isKinematic = false;
 			StartCoroutine(Generar ());
 		}
@@ -67,7 +63,7 @@ public class Generador : MonoBehaviour {
 	public void GameOver() {
 		rbPersonaje.isKinematic = true;
 		gameOver = true;
-		gameObjectGameOver.SetActive(true);
+		controladorUI.PrintGameOver ();
 	}
 
 	public void Restart() {
@@ -77,7 +73,7 @@ public class Generador : MonoBehaviour {
 	public void AddPuntuacion(int p)
 	{
 		puntuacion += p;
-		puntuacionTexto.text = puntuacion.ToString();
+		controladorUI.PrintPuntuacion(puntuacion);
 		Debug.Log ("puntuacion: "+puntuacion);
 
 	}
