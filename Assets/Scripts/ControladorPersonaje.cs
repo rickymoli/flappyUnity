@@ -15,6 +15,7 @@ public class ControladorPersonaje : MonoBehaviour {
 	private Camara camara;
 	private bool impulsar = false;
 
+
 	void Awake()
 	{
 		generador = GameObject.FindWithTag ("GameController").GetComponent<Generador> ();
@@ -52,11 +53,14 @@ public class ControladorPersonaje : MonoBehaviour {
 	}
 
 	public void Impulsar() {
+		Debug.Log ("entr arat");
 		impulsar = true;
 	}
 
 	public void DetenerImpulsar() {
 		impulsar = false;
 	}
+
+
 
 }
