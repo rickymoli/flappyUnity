@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\LimiteBloques.cs" />
      <Compile Include="Assets\Scripts\Movimiento.cs" />
      <Compile Include="Assets\Scripts\Resolucion.cs" />
+     <Compile Include="Assets\Scripts\ResolucionBloques.cs" />
      <Compile Include="Assets\Scripts\Scroll.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/opt/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

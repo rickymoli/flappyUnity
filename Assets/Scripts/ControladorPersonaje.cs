@@ -3,10 +3,12 @@ using System.Collections;
 
 public class ControladorPersonaje : MonoBehaviour {
 
+	//public float minimoTiempo;
+	public float escalaGravedad = 1f;
 	public float fuerzaElevar;
-	public float minimoTiempo;
 	public float maximaRotacion = 30f;
 	public float minimaRotacion = -90f;
+
 
 	private Rigidbody2D rb;
 	private float ultima = 0f;
@@ -25,16 +27,17 @@ public class ControladorPersonaje : MonoBehaviour {
 
 	void Start () {
 		limiteVerticalPantalla = camara.getLimiteVerticalPantalla();
+		rb.gravityScale = escalaGravedad;
 	}
 
 	void Update() {
 		if (impulsar && rb.velocity.y != 0) {
-			float ahora = Time.fixedTime;
+			/*float ahora = Time.fixedTime;
 			if (ahora > ultima + minimoTiempo) {
-				ultima = Time.fixedTime;
+				ultima = Time.fixedTime;*/
 				rb.velocity = new Vector2 (0, fuerzaElevar);
 				rb.rotation = Mathf.Clamp((rb.velocity.y) + rb.rotation,minimaRotacion,maximaRotacion);
-			}
+			//}
 		}
 
 		//limite superior

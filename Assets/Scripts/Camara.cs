@@ -24,7 +24,8 @@ public class Camara : MonoBehaviour {
 
 	public float getLimiteVerticalPantalla()
 	{
-		return Screen.height / PIXELS_TO_UNITS / 2f;
+		//return Screen.height / PIXELS_TO_UNITS / 2f;
+		return (float)Camera.main.orthographicSize;
 	}
 
 	public float getLimiteHorizontalPantalla()
