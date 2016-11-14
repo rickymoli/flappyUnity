@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Generador : MonoBehaviour {
 
 	public GameObject[] obj;
+	public GameObject[] estanques;
 	public float tiempoEsperarBloques = 3f;
 	public float tiempoEmpezar = 1f;
 	public GameObject personaje;
@@ -18,6 +19,7 @@ public class Generador : MonoBehaviour {
 	private ControladorUI controladorUI;
 	private float limiteVerticalPantalla;
 	private float limiteHorizontalPantalla;
+	private int nivelAguaPersonaje = 0;
 
 	void Awake()
 	{
@@ -51,8 +53,16 @@ public class Generador : MonoBehaviour {
 		yield return new WaitForSeconds (tiempoEmpezar);
 		while (true) {
 			int pos = Random.Range (0, obj.Length - 1);
-			float y = -limiteVerticalPantalla + obj [pos].transform.localScale.y/2;
-			Instantiate (obj [pos], new Vector2 (transform.position.x, y), Quaternion.identity);
+			int numAleatorio = Random.Range (0, 99);
+
+			if (numAleatorio < 50 - 1) {
+				float y = -limiteVerticalPantalla + estanques [0].transform.localScale.y/2;
+				Instantiate (estanques [0], new Vector2 (transform.position.x, y), Quaternion.identity);
+			} else {
+				float y = -limiteVerticalPantalla + obj [pos].transform.localScale.y/2;
+				Instantiate (obj [pos], new Vector2 (transform.position.x, y), Quaternion.identity);
+			}
+
 			yield return new WaitForSeconds (tiempoEsperarBloques);
 			if (gameOver) {
 				break;
@@ -77,6 +87,14 @@ public class Generador : MonoBehaviour {
 		Debug.Log ("puntuacion: "+puntuacion);
 
 	}
+
+	public void AddAgua(int a)
+	{
+		nivelAguaPersonaje += a;
+		controladorUI.PrintAgua(nivelAguaPersonaje);
+		Debug.Log ("agua: "+nivelAguaPersonaje);
+	}
+
 
 	public bool IsGameOver()
 	{

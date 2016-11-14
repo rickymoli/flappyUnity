@@ -10,6 +10,7 @@ public class ControladorUI : MonoBehaviour {
 	public GameObject gameObjectPuntuacion;
 	public GameObject gameObjectControles;
 	public Text puntuacionTexto;
+	public Text aguaTexto;
 
 	// Use this for initialization
 	void Start () {
@@ -36,5 +37,9 @@ public class ControladorUI : MonoBehaviour {
 
 	public void PrintPuntuacion(int p)	{
 		puntuacionTexto.text = p.ToString();
+	}
+
+	public void PrintAgua(int p)	{
+		aguaTexto.text = p.ToString();
 	}
 }

@@ -47,6 +47,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Camara.cs" />
      <Compile Include="Assets\Scripts\ContactoDetectaPaso.cs" />
+     <Compile Include="Assets\Scripts\ContactoEstanque.cs" />
      <Compile Include="Assets\Scripts\ContactoPersonaje.cs" />
      <Compile Include="Assets\Scripts\ControladorPersonaje.cs" />
      <Compile Include="Assets\Scripts\ControladorUI.cs" />

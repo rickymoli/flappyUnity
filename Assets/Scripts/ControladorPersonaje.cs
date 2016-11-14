@@ -11,11 +11,12 @@ public class ControladorPersonaje : MonoBehaviour {
 
 
 	private Rigidbody2D rb;
-	private float ultima = 0f;
+	//private float ultima = 0f;
 	private float limiteVerticalPantalla;
 	private Generador generador;
 	private Camara camara;
 	private bool impulsar = false;
+	private bool contactoAgua = false;
 
 
 	void Awake()
@@ -31,7 +32,7 @@ public class ControladorPersonaje : MonoBehaviour {
 	}
 
 	void Update() {
-		if (impulsar && rb.velocity.y != 0) {
+		if (impulsar && (rb.velocity.y != 0 || contactoAgua == true)) {
 			/*float ahora = Time.fixedTime;
 			if (ahora > ultima + minimoTiempo) {
 				ultima = Time.fixedTime;*/
@@ -39,10 +40,13 @@ public class ControladorPersonaje : MonoBehaviour {
 				rb.rotation = Mathf.Clamp((rb.velocity.y) + rb.rotation,minimaRotacion,maximaRotacion);
 			//}
 		}
+		if (contactoAgua) {
+			generador.AddAgua (1);
+		}
 
 		//limite superior
 		if (rb.position.y > limiteVerticalPantalla) {
-			Debug.Log("y: "+rb.position.y+" limite: "+limiteVerticalPantalla);
+			//Debug.Log("y: "+rb.position.y+" limite: "+limiteVerticalPantalla);
 			rb.velocity = new Vector2 (0, -fuerzaElevar/2);
 		}else if (rb.position.y < -limiteVerticalPantalla) {
 			generador.GameOver ();
@@ -56,12 +60,26 @@ public class ControladorPersonaje : MonoBehaviour {
 	}
 
 	public void Impulsar() {
-		Debug.Log ("entr arat");
+		//Debug.Log ("Impulsar");
 		impulsar = true;
 	}
 
 	public void DetenerImpulsar() {
+		//Debug.Log ("DetenerImpulsar");
 		impulsar = false;
+	}
+
+	public void entraAgua(float y) {
+		rb.gravityScale = 0;
+		rb.rotation = 0;
+		rb.velocity = new Vector2 (0, 0);
+		rb.position = new Vector2 (0f,y);
+		contactoAgua = true;
+	}
+
+	public void saleAgua() {
+		rb.gravityScale = escalaGravedad;
+		contactoAgua = false;
 	}
 
 
